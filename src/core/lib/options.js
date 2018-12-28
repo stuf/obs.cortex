@@ -9,6 +9,11 @@ exports['env-access-token'] = {
   describe: [
     'Use access token from environment variable ',
     `(${color.bold(EnvVariable.TWITCH_OAUTH_TOKEN)}) `,
-    'instead of requesting it from the API.',
+    'instead of requesting it from the APIs',
   ].join(''),
+};
+
+exports['verbose'] = {
+  alias: 'v',
+  describe: 'Enable extra logging',
 };

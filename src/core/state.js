@@ -1,5 +1,29 @@
 const U = require('karet.util');
 
-const state = module.exports = U.atom();
+/**
+ * @param {*} initial
+ * @param {CreateStateOptions} options
+ */
+function createState(initial = {}, options = {}) {
+  const state = U.atom(initial);
 
-state.log('state');
+  if (options.verbose) {
+    const log = require('npmlog');
+
+    log.heading = 'state';
+
+    // state.log('state');
+    state.onValue(v => log.info('change', '%o', v));
+  }
+
+  return state;
+}
+
+module.exports = exports = createState;
+
+//
+
+/**
+ * @typedef {object} CreateStateOptions
+ * @prop {boolean} verbose
+ */

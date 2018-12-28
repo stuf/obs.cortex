@@ -9,11 +9,20 @@ const _activator = () => {};
 
 const activate = obs => obs.onEnd(_activator);
 const deactivate = obs => obs.offEnd(_activator);
+const property = () => new K.Property();
+const pool = () => new K.Pool();
 
 exports.activate = activate;
 exports.deactivate = deactivate;
+exports.property = property;
+exports.pool = pool;
 // #endregion
+
 // #region [ Lenses ]
+const modJoin = L.modifyOp(R.join(''));
+const modToUpper = L.modifyOp(R.toUpper);
+const modTailToUpper = [L.first, modToUpper];
+
 const Transform = {
   toSnake: [
     L.seq([
@@ -24,10 +33,7 @@ const Transform = {
   toCamel: [
     L.slice(1, Infinity),
     L.elems,
-    L.seq(
-      [L.first, L.modifyOp(R.toUpper)],
-      L.modifyOp(R.join('')),
-    ),
+    L.seq(modTailToUpper, modJoin),
     L.modifyOp(R.join('')),
   ],
 };
@@ -38,6 +44,7 @@ const andSnake = andJoinWith('_');
 
 const transformTokens = L.transform;
 // #endregion
+
 // #region [ Strings ]
 const snakeToTokens = R.split('_');
 const tokensToSnake = transformTokens(andSnake(Transform.toSnake));

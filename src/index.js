@@ -1,8 +1,8 @@
 const U = require('karet.util');
 const L = require('partial.lenses');
 const env = require('./core/env');
-const api = require('./core/api');
-const state = require('./core/state');
+const api = require('./core/twitch/api');
+const createState = require('./core/state');
 const log = require('npmlog');
 
 log.heading = 'main';
@@ -11,7 +11,7 @@ module.exports = exports = {};
 
 //
 
-function run() {
+function run(argv) {
   log.info('run', 'Check for required environment');
 
   if (!env.hasValidEnvironment()) {
@@ -20,6 +20,8 @@ function run() {
   }
 
   log.info('run', 'Environment OK');
+
+  const state = createState({}, { verbose: argv.verbose });
 
   api.accessToken.onValue(v => U.view(['oauth', 'token'], state).set(v));
   api.tokenExpirationDate.onValue(v => U.view(['oauth', 'expiresAt'], state).set(v))

@@ -5,9 +5,9 @@ const U = require('karet.util');
 const L = require('partial.lenses');
 const { formatDistance, addSeconds } = require('date-fns/fp');
 
-const env = require('./env');
-const state = require('./state');
-const { TwitchApi } = require('./constants');
+const env = require('../env');
+const state = require('../state');
+const { TwitchApi } = require('../constants');
 
 module.exports = exports = {};
 
