@@ -10,3 +10,7 @@ exports.EnvVariable = {
   TWITCH_CLIENT_ID: 'TWITCH_CLIENT_ID',
   TWITCH_CLIENT_SECRET: 'TWITCH_CLIENT_SECRET',
 };
+
+exports.ExitCode = {
+  CONFIGURATION_INVALID: 2,
+};
