@@ -4,25 +4,25 @@ const K = require('kefir');
 const P = require('../../src/core/shared');
 
 // #region [ Kefir ]
-test('property', t => {
+test('property :: () -> Property', t => {
   t.true(P.property() instanceof K.Property);
 });
 
-test('pool', t => {
+test('pool :: () -> Pool', t => {
   t.true(P.pool() instanceof K.Pool);
 })
 // #endregion
 
 // #region [ Strings ]
-test('tokensToCamel', t => {
+test('tokensToCamel :: [String] -> String', t => {
   t.is('fooBar', P.tokensToCamel(['foo', 'bar']));
 });
 
-test('tokensToSnake', t => {
+test('tokensToSnake :: [String] -> String', t => {
   t.is('foo_bar', P.tokensToSnake(['foo', 'bar']));
 });
 
-test('snakeToTokens', t => {
+test('snakeToTokens :: String -> [String]', t => {
   t.deepEqual(['foo', 'bar'], P.snakeToTokens('foo_bar'));
 });
 // #endregion
