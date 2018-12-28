@@ -26,11 +26,16 @@
     "@types/kefir": "^3.7.0",
     "@types/ramda": "^0.25.45",
     "@types/yargs": "^12.0.4",
-    "cz-conventional-changelog": "2.1.0"
+    "ava": "^1.0.1",
+    "cz-conventional-changelog": "2.1.0",
+    "nyc": "^13.1.0"
   },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
+  },
+  "scripts": {
+    "test": "nyc ava"
   }
 }
